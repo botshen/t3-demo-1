@@ -5,21 +5,24 @@ import { Button } from "@radix-ui/themes";
 
 const writing = () => {
   const { data: posts } = api.post.getAllPost.useQuery();
+  const post = api.post.create.useMutation();
 
   return (
-    <>
+    <div style={{ margin: "20px", display: "flex", flexWrap: "wrap" }}>
       {posts?.map((post) => {
         return (
-          <article key={post.id}>
-            <p>{post.id}</p>
-            <p>{post.title}</p>
-            <p>{post.content}</p>
-            <span>----------</span>
-            <Link href={`/posts/${post.id}`}>Read post</Link>
+          <article key={post.id} style={{ flex: "0 0 25%" }}>
+            <p>博客ID：{post.id}</p>
+            <p>博客标题：{post.title}</p>
+            <p>博客内容：{post.content}</p>
+            <Button>
+              <Link href={`/posts/${post.id}`}>查看详情</Link>
+            </Button>
+            <div>----------</div>
           </article>
         );
       })}
-    </>
+    </div>
   );
 };
 

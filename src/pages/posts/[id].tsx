@@ -26,14 +26,19 @@ const BlogDetail = () => {
       },
     );
   };
+  const handleBack = () => {
+    router.push("/writing");
+  };
   return (
-    <>
-      <div>BlogDetail{posts?.id}</div>
-      <div>BlogDetail{posts?.title}</div>
-      <div>BlogDetail{posts?.content}</div>
-      <span>------------------------</span>
+    <div style={{ margin: "20px" }}>
+      <div>博客ID：{posts?.id}</div>
+      <div>博客标题：{posts?.title}</div>
+      <div>博客内容：{posts?.content}</div>
       <Button onClick={handleDelete}>删除博客</Button>
-    </>
+      <br />
+      <br />
+      <Button onClick={handleBack}>返回列表</Button>
+    </div>
   );
 };
 
