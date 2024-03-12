@@ -8,12 +8,16 @@ const NewPost = () => {
 
   const post = api.post.create.useMutation();
   const send = () => {
+    // removed async here, not needed at the moment
     post.mutate(
       { title: "new post", content: "new content" },
       {
         onSuccess: () => {
-          // 删除成功后的操作，例如跳转
-          router.push("/writing");
+          // removed async here as onSuccess does not expect a Promise
+          router.push("/writing").catch((error) => {
+            // Handle the navigation error here, if needed
+            console.error("Failed to navigate:", error);
+          });
         },
       },
     );

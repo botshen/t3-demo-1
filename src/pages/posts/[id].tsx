@@ -11,23 +11,25 @@ const BlogDetail = () => {
     id,
   });
   const deletePost = api.post.deletePost.useMutation();
-  const handleDelete = () => {
+  const handleDelete = async () => {
     deletePost.mutate(
       { id },
       {
         onSuccess: () => {
-          // 删除成功后的操作，例如跳转
-          router.push("/writing");
-        },
-        onError: (error) => {
-          // 错误处理
-          console.error("Delete post failed", error);
+          // removed async here as onSuccess does not expect a Promise
+          router.push("/writing").catch((error) => {
+            // Handle the navigation error here, if needed
+            console.error("Failed to navigate:", error);
+          });
         },
       },
     );
   };
   const handleBack = () => {
-    router.push("/writing");
+    router.push("/writing").catch((error) => {
+      // Handle the navigation error here, if needed
+      console.error("Failed to navigate:", error);
+    });
   };
   return (
     <div style={{ margin: "20px" }}>
