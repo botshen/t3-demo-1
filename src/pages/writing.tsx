@@ -5,7 +5,6 @@ import { Button } from "@radix-ui/themes";
 
 const writing = () => {
   const { data: posts } = api.post.getAllPost.useQuery();
-  const post = api.post.create.useMutation();
 
   return (
     <div style={{ margin: "20px", display: "flex", flexWrap: "wrap" }}>

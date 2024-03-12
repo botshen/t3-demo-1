@@ -15,8 +15,7 @@ const NavBar = () => {
   );
 };
 const NavLinks = () => {
-  const currentPath = useRouter();
-  console.log("currentPath", currentPath);
+  const router = useRouter();
 
   const links = [
     { label: "About", href: "/" },
@@ -30,8 +29,8 @@ const NavLinks = () => {
         <li key={link.href}>
           <Link
             className={classnames({
-              "nav-link": true,
-              "!text-zinc-900": link.href === currentPath.pathname,
+              "text-gray-600 hover:text-gray-800":
+                router.pathname !== link.href,
             })}
             href={link.href}
           >
