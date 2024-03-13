@@ -1,5 +1,5 @@
 import { Button } from "@radix-ui/themes";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { fetchBlogPosts } from "./api/post/getPost";
 type Post = {
@@ -8,9 +8,11 @@ type Post = {
   content: string;
   createdAt: string;
 };
-const writing = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+type WritingProps = {
+  data: Post[];
+};
+
+const writing = ({ data }: WritingProps) => {
   return (
     <div style={{ margin: "20px", display: "flex", flexWrap: "wrap" }}>
       {data?.map((post: Post) => {
